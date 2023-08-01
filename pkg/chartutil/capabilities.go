@@ -25,6 +25,9 @@ import (
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	apiextensionsv1beta1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 
+	apiregistrationv1 "k8s.io/kube-aggregator/pkg/apis/apiregistration/v1"
+	apiregistrationv1beta1 "k8s.io/kube-aggregator/pkg/apis/apiregistration/v1beta1"
+
 	helmversion "helm.sh/helm/v3/internal/version"
 )
 
@@ -116,6 +119,8 @@ func allKnownVersions() VersionSet {
 	// template` in the past, so let's be safe
 	apiextensionsv1beta1.AddToScheme(scheme.Scheme)
 	apiextensionsv1.AddToScheme(scheme.Scheme)
+	apiregistrationv1.AddToScheme(scheme.Scheme)
+	apiregistrationv1beta1.AddToScheme(scheme.Scheme)
 
 	groups := scheme.Scheme.PrioritizedVersionsAllGroups()
 	vs := make(VersionSet, 0, len(groups))
